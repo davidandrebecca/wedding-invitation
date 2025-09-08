@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're Invited! - David & Rebecca's Wedding</title>
+    <link rel="icon" href="data:,">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles to apply the fonts */
+        body {
+            font-family: 'Lora', serif;
+            background-color: #ebe8e1;
+            /* Beige background for mobile */
+            scroll-behavior: smooth;
+        }
+
+        /* Two-color gradient background for desktop/tablet views only */
+        @media (min-width: 768px) {
+            body {
+                background: linear-gradient(135deg, #ffffff 0%, #e8ddd4 100%);
+                /* Soft beige to warm cream gradient */
+                min-height: 100vh;
+            }
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .font-display {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        /* Smooth transitions */
+        .transition-all {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Navigation hover effect */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #e11d48;
+            /* rose-600 */
+            transition: all 0.3s ease-in-out;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover:after,
+        .nav-link.text-rose-600:after {
+            width: 60%;
+        }
+
+        /* Hero section */
+        .hero {
+            background-attachment: fixed;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-gray-700 antialiased bg-[#ebe8e1]">
+    <!-- Navigation -->
+    <div id="nav-container">
+        <!-- Navigation will be loaded here by JavaScript -->
+    </div>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="px-0 max-w-none">
+        <!-- Page content will be loaded here by JavaScript -->
+    </main>
+
+    <!-- Footer -->
+    <footer id="app-footer" class="py-8 mt-12 border-t border-gray-200">
+        <div class="container mx-auto px-4 max-w-4xl text-center">
+            <!-- Footer content will be loaded here by JavaScript -->
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/app.js" type="module"></script>
+</body>
+
+</html>
