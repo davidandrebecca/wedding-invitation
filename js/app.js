@@ -170,7 +170,7 @@ function attachRsvpFormHandler() {
 
         const scriptURL = 'https://script.google.com/macros/s/AKfycbz5sI4Y3gcgJ9xvb6qvwphVdZz7yajLGp4GuGv-LHkBZ3NG3OxKtKtnr6zGU_Uzc-OpZg/exec';
         const formData = new FormData(rsvpForm);
-        
+
         submitButton.disabled = true;
         submitButton.textContent = 'Submitting...';
 
@@ -180,10 +180,11 @@ function attachRsvpFormHandler() {
                 body: formData 
             });
             const data = await response.json();
-            
+
             if (data.result === 'success') {
-                rsvpForm.style.display = 'none';
+                // Append confirmation message below the submit button
                 confirmationMessage.classList.remove('hidden');
+                confirmationMessage.classList.add('mt-4'); // Add spacing
             } else {
                 throw new Error(data.error || 'Unknown error from Google Script');
             }
@@ -191,7 +192,7 @@ function attachRsvpFormHandler() {
             console.error('Error!', error.message);
             submitButton.disabled = false;
             submitButton.textContent = 'Submit RSVP';
-            
+
             let errorMessageDiv = rsvpForm.querySelector('.error-message');
             if (!errorMessageDiv) {
                 errorMessageDiv = document.createElement('div');
