@@ -17,6 +17,10 @@
             <p class="font-bold text-[9px] sm:text-xs md:text-sm lg:text-base text-[#482127]"><br />St. Mary’s
                 Cathedral <br />Kuala
                 Lumpur</p>
+
+            <!-- St. Mary's Cathedral Kuala Lumpur -->
+            <p class="text-[9px] sm:text-xs lg:text-sm text-[#ff0000]"><br /><a
+                    href="https://maps.app.goo.gl/79v9Y35rztEQjdC16" target="_blank">Click here to view map</a></p>
         </div>
         <div class="border-2 border-[#482127] p-4 sm:p-6 rounded-lg">
             <h3
@@ -30,6 +34,10 @@
                 <br /> Concorde
                 Hotel Kuala Lumpur
             </p>
+
+            <!-- Concorde Hotel Kuala Lumpur -->
+            <p class="text-[9px] sm:text-xs lg:text-sm text-[#ff0000]"><br /><a
+                    href="https://maps.app.goo.gl/VuoT8VsbnU9ERDcZ9" target="_blank">Click here to view map</a></p>
         </div>
     </div>
 
@@ -48,11 +56,6 @@
                 </p>
             </div>
             <div class="text-left font-['Libre_Baskerville']">
-                <p class="font-bold underline mb-2">Plus Ones</p>
-                <p class="text-xs sm:text-sm md:text-base  text-justify">All invitations are extended to include married
-                    spouses. If you would like to bring additional guests, please kindly reach out to us.</p>
-            </div>
-            <div class="text-left font-['Libre_Baskerville']">
                 <p class="font-bold underline mb-2">Children</p>
                 <p class="text-xs sm:text-sm md:text-base  text-justify">To help maintain a quiet and reverent
                     atmosphere, children
@@ -60,13 +63,29 @@
                     understanding.
                 </p>
             </div>
+
             <div class="text-left font-['Libre_Baskerville']">
-                <p class="font-bold underline mb-2">Shuttle service</p>
-                <p class="text-xs sm:text-sm md:text-base text-justify">Shuttle buses will be provided from <b>St.
-                        Mary’s Cathedral
-                        to Concorde Hotel</b> for the lunch
-                    reception.
-                    Please let us know in your RSVP if you would like to use this service.</p>
+                <p class="font-bold underline mb-2">Plus Ones</p>
+                <p class="text-xs sm:text-sm md:text-base  text-justify">All invitations are extended to include married
+                    spouses. If you would like to bring other guests, please kindly reach out to us.</p>
+            </div>
+
+            <div class="text-left font-['Libre_Baskerville']">
+                <p class="font-bold underline mb-2">Food</p>
+                <p class="text-xs sm:text-sm md:text-base  text-justify">Food served at the lunch reception is a
+                    nine-course <b>pork-free</b> Chinese cuisine. Kindly let us know in the RSVP if you intend to opt
+                    for the vegetarian option. </p>
+            </div>
+
+
+            <div class="text-left font-['Libre_Baskerville']">
+                <p class="font-bold underline mb-2">Transportation</p>
+                <p class="text-xs sm:text-sm md:text-base text-justify">Guests are to arrange their own transportation
+                    to the wedding ceremony at St. Mary’s Cathedral. Shuttle buses will be provided after the main
+                    ceremony from <b>St. Mary’s Cathedral to Concorde Hotel</b> for the lunch reception. However,
+                    priority shall be given to overseas guests who do not have their own cars, and seat availability
+                    shall be on a first-come first-served basis on the actual day. Kindly let us know in your RSVP if
+                    you would like to use this service.</p>
             </div>
         </div>
     </div>
@@ -87,13 +106,56 @@
                 </div>
 
                 <!-- Contact number -->
-                <div>
+                <!-- <div>
                     <label for="contact" class="block text-sm font-medium text-gray-700 mb-1">Contact number (WhatsApp
                         number)*</label>
                     <input type="tel" id="contact" name="contact" required pattern="[0-9]+"
                         title="Please enter numbers only"
+                        placeholder="65 123456"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-rose-500 focus:border-rose-500">
+                </div> -->
+
+                <div>
+                    <label for="contact" class="block text-sm font-medium text-gray-700 mb-1">
+                        Contact number (WhatsApp number)*
+                    </label>
+
+                    <div class="flex">
+                        <!-- fixed width on all sizes -->
+                        <select id="country-code" name="country_code" class="w-24 px-3 py-2 border border-gray-300 rounded-l-md bg-white
+                   focus:ring-rose-500 focus:border-rose-500">
+                            <option value="+60" selected>🇲🇾 +60</option>
+                            <option value="+65">🇸🇬 +65</option>
+                            <option value="+62">🇮🇩 +62</option>
+                            <option value="+91">🇮🇳 +91</option>
+                            <option value="+1">🇺🇸 +1</option>
+
+                            <!-- australia
+                            japan
+                            korea
+                            uk
+                            taiwan
+                            thailand
+                            vietnam -->
+
+                        </select>
+
+                        <input type="tel" id="contact" name="contact" required inputmode="tel" pattern="[0-9]{6,15}"
+                            title="Please enter digits only (6–15 digits)" placeholder="81234567" class="flex-1 px-4 py-2 border border-gray-300 rounded-r-md
+                  focus:ring-rose-500 focus:border-rose-500">
+                    </div>
+
+                    <!-- hidden combined field (server can use this if present) -->
+                    <input type="hidden" id="contact-full" name="contact_full" value="">
+                </div>
+
+                <!-- Email Address -->
+                <div>
+                    <label for="Email" class="block text-sm font-medium text-gray-700 mb-1">Email*</label>
+                    <input type="email" id="email" name="email" required placeholder="YourEmail@gmail.com"
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-rose-500 focus:border-rose-500">
                 </div>
+
 
                 <!-- Attendance -->
                 <div>
@@ -141,17 +203,18 @@
                     <!-- Shuttle bus -->
                     <div>
                         <span class="block text-sm font-medium text-gray-700 mb-1">
-                            Will you be using the shuttle bus service from St. Mary's Cathedral to Concorde Hotel for
-                            the lunch reception?*
+                            <i>(For overseas guests)</i> Will you be using the shuttle bus service from St. Mary's
+                            Cathedral to Concorde Hotel for
+                            the lunch reception?
                         </span>
                         <div class="flex items-center space-x-6">
                             <label class="flex items-center">
-                                <input type="radio" name="shuttle" value="yes" required
+                                <input type="radio" name="shuttle" value="yes"
                                     class="h-4 w-4 text-rose-600 border-gray-300 focus:ring-rose-500">
                                 <span class="ml-2">Yes</span>
                             </label>
                             <label class="flex items-center">
-                                <input type="radio" name="shuttle" value="no" required
+                                <input type="radio" name="shuttle" value="no"
                                     class="h-4 w-4 text-rose-600 border-gray-300 focus:ring-rose-500">
                                 <span class="ml-2">No</span>
                             </label>
@@ -182,7 +245,7 @@
             </div>
 
             <!-- Submit -->
-            <div class="text-center mt-8">
+            <div class="text-center mt-14">
                 <button type="submit"
                     class="bg-rose-600 text-white font-bold px-8 py-3 rounded-full hover:bg-rose-700 transition-transform transform hover:scale-105 duration-300">
                     Submit RSVP
@@ -198,20 +261,30 @@
 
         <div class="text-center text-[#482127]2 mt-10">
             <div class="text-left font-['Libre_Baskerville']">
+                <p><br /></p>
+                <h2 class="font-['Libre_Baskerville'] text-3xl text-center text-[#482127] mb-5">GIFT REGISTRY</h2>
 
-                <h2 class="font-['Libre_Baskerville'] text-3xl text-center text-[#482127] mb-2">GIFT REGISTRY</h2>
-
-                <div class="w-[50%] md:w-[30%] mx-auto flex justify-center items-center">
+                <div class="w-[50%] md:w-[30%] mx-auto flex justify-center items-center mb-7">
                     <img src="assets/home_page/logo.png" alt="David and Rebecca">
                 </div>
 
-                <p class="font-bold mb-2">Your presence is the <br />greatest gift of all.</p>
-                <p class="text-xs sm:text-sm md:text-base leading-relaxed">Having you with us on our special day is the greatest gift of
+                <p class="font-bold text-lg mb-3">Your presence is the <br />greatest gift of all.</p>
+                <p class="text-xs sm:text-sm md:text-base leading-relaxed text-justify">Having you with us on our
+                    special day is the greatest gift of
                     all. Should you wish to bless us further, we warmly welcome gifts via <b>DuitNow (Malaysia)</b> or
                     <b>PayNow (Singapore)</b>. Kindly include your name in the reference so that we may thank you
                     personally.
                     Your support and kindness mean so much to us as we start our life together as husband and wife.
+
+                    <br />
+                    <br />
+                    <i> With love and gratitude,</i>
+                    <br />
+                    D & R.
                 </p>
+
+
+
             </div>
         </div>
     </div>

@@ -42,9 +42,13 @@ function attachRsvpFormHandler() {
             if (event.target.value === 'yes') {
                 attendingFields.classList.remove('hidden');
                 notAttendingFields.classList.add('hidden');
+                // Make num-guests required when attending
+                if (numGuestsInput) numGuestsInput.required = true;
             } else {
                 attendingFields.classList.add('hidden');
                 notAttendingFields.classList.remove('hidden');
+                // Remove required when not attending
+                if (numGuestsInput) numGuestsInput.required = false;
             }
         }
     });
@@ -61,7 +65,7 @@ function attachRsvpFormHandler() {
             // Guest name
             const nameLabel = document.createElement('label');
             nameLabel.className = "block text-sm font-medium text-gray-700";
-            nameLabel.textContent = `Guest name ${i}`;
+            nameLabel.textContent = `Guest Name ${i}`;
             const nameField = document.createElement('input');
             nameField.type = "text";
             nameField.name = `guest_name_${i}`;
@@ -69,9 +73,12 @@ function attachRsvpFormHandler() {
             
             // Lock first guest name field and make it read-only
             if (i === 1) {
+                if (num > 1){
+                    nameLabel.textContent = `Guest Name ${i} (Lead Guest)`;
+                }
                 nameField.className = "w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed";
                 nameField.readOnly = true;
-                nameField.value = nameInput.value || '';
+                nameField.value = nameInput.value|| '';
             } else {
                 nameField.className = "w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-rose-500 focus:border-rose-500";
             }
@@ -96,7 +103,7 @@ function attachRsvpFormHandler() {
             defaultDietOption.selected = true;
             dietSelect.appendChild(defaultDietOption);
             
-            ["None", "No beef", "No seafood", "Vegetarian", "Others"].forEach(opt => {
+            ["None", "Vegetarian"].forEach(opt => {
                 const option = document.createElement('option');
                 option.value = opt.toLowerCase().replace(/\s+/g, "_"); 
                 option.textContent = opt;
@@ -128,7 +135,7 @@ function attachRsvpFormHandler() {
             if (i > 1) {
                 const relLabel = document.createElement('label');
                 relLabel.className = "block text-sm font-medium text-gray-700 mt-2";
-                relLabel.textContent = "Relationship";
+                relLabel.textContent = "Relationship with Lead Guest";
                 const relSelect = document.createElement('select');
                 relSelect.name = `guest_relationship_${i}`;
                 relSelect.required = true;
@@ -168,8 +175,15 @@ function attachRsvpFormHandler() {
     rsvpForm.addEventListener('submit', async function(event) {
         event.preventDefault();
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbz5sI4Y3gcgJ9xvb6qvwphVdZz7yajLGp4GuGv-LHkBZ3NG3OxKtKtnr6zGU_Uzc-OpZg/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzXoZzHwp9aKMWQZW5enD4-hOb4qVay5EVr1DofrTjVdsh1YNzwgCWnNS70ww0JtGQ9dg/exec';
         const formData = new FormData(rsvpForm);
+        
+        // Add the combined contact number with country code
+        const code = document.getElementById('country-code').value || '';
+        const raw = document.getElementById('contact').value || '';
+        const digits = raw.replace(/\D/g, ''); // keep digits only
+        const contactFull = code + digits;
+        formData.set('contact', contactFull); // Replace the original contact value
 
         submitButton.disabled = true;
         submitButton.textContent = 'Submitting...';
@@ -183,6 +197,7 @@ function attachRsvpFormHandler() {
 
             if (data.result === 'success') {
                 // Append confirmation message below the submit button
+                submitButton.textContent = 'Submitted!';
                 confirmationMessage.classList.remove('hidden');
                 confirmationMessage.classList.add('mt-4'); // Add spacing
             } else {
